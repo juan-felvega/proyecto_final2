@@ -8,13 +8,13 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void BotonStart()
@@ -25,6 +25,8 @@ public class LevelManager : MonoBehaviour
     public void BotonSalir()
     {
         Debug.Log("salir del juego");
-        Application.Quit();
+            Application.Quit();
     }
+
+
 }
