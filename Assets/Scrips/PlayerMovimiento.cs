@@ -13,31 +13,33 @@ public class PlayerMovimiento : MonoBehaviour
     public Animator animator;
     public static bool jugadorSalto = false;
 
+    // NUEVO: Control de movimiento externo
+    public bool canMove = true;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
+        if (!canMove)
+        {
+            movimiento = 0f;
+            animator.SetFloat("Caminar", 0f);
+            return;
+        }
+
         movimiento = Input.GetAxis("Horizontal");
 
+        // Flip del sprite
         if (movimiento < 0f && faceingRight)
         {
             transform.eulerAngles = new Vector3(0f, 180f, 0f);
             faceingRight = false;
-            
         }
-        else if (movimiento > 0f && faceingRight == false)
+        else if (movimiento > 0f && !faceingRight)
         {
             transform.eulerAngles = new Vector3(0f, 0f, 0f);
             faceingRight = true;
-            
         }
+
+        // Saltar
         if (Input.GetKey(KeyCode.Space) && isGrounded)
         {
             Jump();
@@ -46,34 +48,39 @@ public class PlayerMovimiento : MonoBehaviour
             jugadorSalto = true;
         }
 
-        if (Mathf.Abs(movimiento) > 0f){
+        // Animación caminar
+        if (Mathf.Abs(movimiento) > 0f)
             animator.SetFloat("Caminar", 1f);
-        }
-        else if (movimiento < 0.01f){
+        else
             animator.SetFloat("Caminar", 0f);
-        }
+
+        // Ataque
         if (Input.GetMouseButtonDown(0))
         {
             animator.SetTrigger("Ataque");
         }
-        
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
-        rb.velocity = new Vector2(movimiento * velocidad, rb.velocity.y);
+        if (!canMove)
+        {
+            rb.velocity = new Vector2(0, rb.velocity.y);
+            return;
+        }
 
+        rb.velocity = new Vector2(movimiento * velocidad, rb.velocity.y);
     }
+
     void Jump()
     {
-    rb.velocity = new Vector2(rb.velocity.x, 0f); // reinicia velocidad Y antes de aplicar fuerza
-    rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+        rb.velocity = new Vector2(rb.velocity.x, 0f); // reinicia velocidad Y antes de aplicar fuerza
+        rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
     }
-    
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log(collision.gameObject.name);
-        if (collision.gameObject.CompareTag ("Piso"))
+        if (collision.gameObject.CompareTag("Piso"))
         {
             isGrounded = true;
             animator.SetBool("Salto", false);

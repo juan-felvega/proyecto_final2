@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Piso
   - Seguidor
+  - Fondo
+  - Cerveza
+  - Pollo
+  - Pocion
   layers:
   - Default
   - TransparentFX
@@ -40,6 +44,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Fondo
+    uniqueID: 3969168763
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
