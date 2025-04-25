@@ -4,14 +4,26 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     public static Inventory instance;
-    void Awake() { instance = this; }
 
     public int space = 20;
-
     public List<ItemInstance> items = new List<ItemInstance>();
 
     public delegate void OnItemChanged();
     public OnItemChanged onItemChangedCallback;
+
+    void Awake()
+    {
+        // Si ya existe una instancia distinta, la eliminamos
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        // Asignamos la instancia y la hacemos persistente
+        instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
 
     public bool Add(Item item)
     {
@@ -29,7 +41,7 @@ public class Inventory : MonoBehaviour
             }
         }
 
-        // Si hay espacio, añadimos nuevo
+        // Si hay espacio, aÃ±adimos nuevo
         if (items.Count >= space)
         {
             Debug.Log("Inventario lleno");
