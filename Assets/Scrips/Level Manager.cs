@@ -23,11 +23,12 @@ public class LevelManager : MonoBehaviour
     {
     SceneManager.LoadScene(2); 
     }
-    private void OnTriggerEnter2D(Collider2D other)
+   private void OnTriggerEnter2D(Collider2D other)
+{
+    if (other.CompareTag("Player") && !string.IsNullOrEmpty(nombreEscenaTrigger))
     {
-        if (other.CompareTag("Player") && !string.IsNullOrEmpty(nombreEscenaTrigger))
-        {
-            SceneManager.LoadScene(nombreEscenaTrigger);
-        }
+        // Cambiar escena
+        SceneManager.LoadScene(nombreEscenaTrigger);
     }
+}
 }
