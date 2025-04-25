@@ -48,7 +48,7 @@ public class PlayerMovimiento : MonoBehaviour
             jugadorSalto = true;
         }
 
-        // Animación caminar
+        // Animaciï¿½n caminar
         if (Mathf.Abs(movimiento) > 0f)
             animator.SetFloat("Caminar", 1f);
         else
@@ -87,4 +87,6 @@ public class PlayerMovimiento : MonoBehaviour
             jugadorSalto = false;
         }
     }
+   
+
 }
