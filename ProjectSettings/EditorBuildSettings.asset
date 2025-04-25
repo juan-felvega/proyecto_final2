@@ -14,4 +14,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Juego.unity
     guid: a3e3be1e49fbfe64a920399cab9669af
+  - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: f60f8b12a1942814fae275fb22beda7e
+  - enabled: 1
+    path: Assets/Scenes/Bosque.unity
+    guid: 4c493b37f2c82f248a5240d1787902f5
+  - enabled: 1
+    path: Assets/Scenes/PeleaBoss.unity
+    guid: 65c58d73ca0f5b0458902634de6bcede
+  - enabled: 1
+    path: Assets/Scenes/Pelea.unity
+    guid: 4984fe890eb57ed4da14b23ca874d9a0
   m_configObjects: {}
