@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
+    [Header("Para cambio por trigger")]
+    public string nombreEscenaTrigger;
    
     public void BotonStart()
     {
@@ -21,6 +23,11 @@ public class LevelManager : MonoBehaviour
     {
     SceneManager.LoadScene(2); 
     }
-
-
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player") && !string.IsNullOrEmpty(nombreEscenaTrigger))
+        {
+            SceneManager.LoadScene(nombreEscenaTrigger);
+        }
+    }
 }
